@@ -1,0 +1,17 @@
+task runServer(type: Exec) {
+    description "Start backend app engine"
+    group "Our demo"
+    commandLine './gradlew', 'backend:appengineRun'
+}
+
+task runTest(type: Exec, dependsOn: runServer) {
+    description "Run tests"
+    group "Our demo"
+    commandLine './gradlew', 'test'
+}
+
+task stopServer(type: Exec, dependsOn: runTest) {
+    description "Stop backend app engine"
+    group "Our demo"
+    commandLine './gradlew', 'backend:appengineStop'
+}
